@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    public function address()
+    protected $guarded = ['id'];
+
+    public function addresses()
     {
-        return $this->hasOne(Address::class);
+        return $this->hasMany(Address::class);
     }
 
     public function orders()

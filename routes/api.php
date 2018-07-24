@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'auth:api', 'namespace' => 'API'], function() {
+Route::group(['namespace' => 'API'], function() {
     Route::resource('customers', 'CustomerController');
+    Route::resource('customers.addresses', 'AddressController');
 });

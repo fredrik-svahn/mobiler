@@ -15,9 +15,9 @@ class CreateOrderDevicesTable extends Migration
     {
         Schema::create('order_devices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
-            $table->integer('device_id');
-            $table->integer('condition_id');
+            $table->integer('order_id')->nullable();
+            $table->integer('device_id')->nullable();
+            $table->integer('condition_id')->nullable();
             $table->integer('price');
             $table->timestamps();
         });

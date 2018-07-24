@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return response()->json(Customer::all());
+        return response()->json(Customer::select()->with(['orders', 'address'])->get());
     }
 
     /**
@@ -27,7 +27,12 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $insert = $this->validateAndCollect($request, [
+            'name' => 'required|string|max:191',
+            'email' => 'required|email|max:191'
+        ]);
+
+        return response()->json(Customer::create($insert));
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeviceModel extends Model
 {
     protected $table = "models";
+    protected $guarded = ['id'];
 
     public function devices()
     {
