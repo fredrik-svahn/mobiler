@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['namespace' => 'API'], function() {
-    Route::resource('customers', 'CustomerController');
-    Route::resource('customers.addresses', 'AddressController');
+
+    Route::group(['namespace' => 'Customer'], function() {
+        Route::resource('customers', 'CustomerController');
+        Route::resource('customers.addresses', 'AddressController');
+        Route::resource('customers.orders', 'OrderController');
+    });
+
+    Route::resource('conditions', 'ConditionController');
 });

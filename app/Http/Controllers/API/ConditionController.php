@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Condition;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ConditionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Condition::all());
     }
 
     /**
@@ -24,7 +26,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -33,9 +35,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Condition $condition)
     {
-        //
+        return response()->json($condition);
     }
 
     /**

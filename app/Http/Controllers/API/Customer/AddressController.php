@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Customer;
 
 use App\Address;
 use App\Customer;
@@ -42,9 +42,9 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer, Address $address)
+    public function show(Customer $customer, $addressId)
     {
-        return response()->json($address);
+        return response()->json($customer->addresses()->findOrFail($addressId));
     }
 
     /**
@@ -54,7 +54,7 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request,Customer $customer, Address $addressId)
     {
         $update = $this->validateAndCollect($request, [
             'street' => 'string|max:191',
@@ -62,7 +62,7 @@ class AddressController extends Controller
             'city' => 'string|max:191',
         ]);
 
-        return response()->json($address->update($update));
+        return response()->json($customer->addresses()->findOrFail($addressId)->update($update));
 
     }
 

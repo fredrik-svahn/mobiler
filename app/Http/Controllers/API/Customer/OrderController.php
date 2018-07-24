@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Customer;
 
-use App\Customer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
+use Illuminate\Http\Request;
 
-
-class CustomerController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return response()->json(Customer::select()->with(['orders', 'address'])->get());
+        return response()->json(Order::all());
     }
 
     /**
@@ -27,33 +26,28 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $insert = $this->validateAndCollect($request, [
-            'name' => 'required|string|max:191',
-            'email' => 'required|email|max:191'
-        ]);
-
-        return response()->json(Customer::create($insert));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer, Order $order)
     {
-        return response()->json($customer);
+        return response()->json($order->with('devices'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -61,10 +55,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
         //
     }

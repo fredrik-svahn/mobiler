@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $guarded = ['id'];
+    protected $with = ['addresses'];
 
     public function addresses()
     {
